@@ -1,0 +1,22 @@
+
+spring:
+  shardingsphere:
+    datasource:
+      names: order-system
+      order-system:
+        driverClassName: com.mysql.jdbc.Driver
+        password: 123456
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://127.0.0.1:3306/order?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&useTimezone=true
+        username: dev
+    props:
+      sql:
+        show: true
+    sharding:
+      tables:
+        order:
+          actual-data-nodes: order.order_${0..5}
+          table-strategy:
+            inline:
+              algorithm-expression: order_$->{id % 5}
+              sharding-column: id

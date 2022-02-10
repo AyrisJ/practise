@@ -9,7 +9,10 @@ import tk.mybatis.spring.annotation.MapperScan;
 public class TkmybatisApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TkmybatisApplication.class, args);
+        SpringApplication sa = new SpringApplication(TkmybatisApplication.class);
+        // 2.6.0后默认不允许循环依赖，需要手动设置
+        sa.setAllowCircularReferences(true);
+        sa.run(args);
     }
 
 }

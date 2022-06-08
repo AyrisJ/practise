@@ -6,6 +6,8 @@ import com.ayris.tkmybatis.domain.TOrder;
 import com.ayris.tkmybatis.service.TOrderService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tk.mybatis.mapper.entity.Example;
@@ -20,7 +22,7 @@ public class OrderController {
     @Autowired
     private TOrderService orderService;
 
-    @RequestMapping("insert/batch")
+    @PostMapping("insert/batch")
     public void insertBatch() {
         List<TOrder> list = new ArrayList<>(150);
 
@@ -45,7 +47,7 @@ public class OrderController {
         orderService.saveList(list);
     }
 
-    @RequestMapping("query")
+    @GetMapping("query")
     public void query() {
         Example example = new Example(TOrder.class);
         example.or().andCondition("JSON_EXTRACT(ci,'$.ci')=300000");
@@ -58,16 +60,24 @@ public class OrderController {
         }
     }
 
-    @RequestMapping("page")
+    @GetMapping("page")
     public void page() {
         Example example = new Example(TOrder.class);
-        example.or().andCondition("JSON_EXTRACT(ci,'$.ci')>=300000");
+//        example.or().andCondition("JSON_EXTRACT(ci,'$.ci')>=300000");
 
         Page<TOrder> page = orderService.selectPageByExample(example, 1, 10, "id");
         List<TOrder> orderList = page.getContents();
          for (TOrder order : orderList) {
             System.out.println(order);
         }
+    }
+
+    public static void main(String[] args) {
+        String ss = "abbmodejjj";
+
+        String bb = ss.replace("mode", "'mode'");
+        System.out.println(bb);
+
     }
 
 }

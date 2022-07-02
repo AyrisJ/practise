@@ -1,31 +1,39 @@
 package com.ayris.tkmybatis.service.impl;
 
+import cn.hutool.core.lang.TypeReference;
+import cn.hutool.extra.spring.SpringUtil;
 import com.ayris.tkmybatis.base.Page;
 import com.ayris.tkmybatis.base.IMapper;
+import com.ayris.tkmybatis.domain.TOrder;
+import com.ayris.tkmybatis.domain.TUser;
 import com.ayris.tkmybatis.service.IService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import javax.swing.*;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 
 public abstract class IServiceImpl<T> implements IService<T> {
 
     private Class<T> entityClass;
 
-    @Resource
     protected IMapper<T> mapper;
 
     public IServiceImpl() {
         Type genType = this.getClass().getGenericSuperclass();
         Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
         this.entityClass = (Class) params[0];
+        Map<String, IMapper> mapperMap = SpringUtil.getBeansOfType(IMapper.class);
+        this.mapper = mapperMap.get(this.entityClass.getSimpleName() + "Mapper");
     }
 
     public IMapper<T> getMapper() {

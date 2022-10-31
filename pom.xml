@@ -57,6 +57,12 @@
                 <artifactId>fastjson</artifactId>
                 <version>1.2.76</version>
             </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.22</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -73,6 +79,15 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <modules>
@@ -81,6 +96,7 @@
         <module>eshighclient</module>
         <module>starter-demo</module>
         <module>starter-test</module>
+        <module>rabbitmq-test</module>
     </modules>
 
     <build>

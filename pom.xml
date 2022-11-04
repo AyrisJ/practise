@@ -88,6 +88,10 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
     </dependencies>
 
     <modules>
@@ -97,6 +101,7 @@
         <module>starter-demo</module>
         <module>starter-test</module>
         <module>rabbitmq-test</module>
+        <module>rpc-test</module>
     </modules>
 
     <build>

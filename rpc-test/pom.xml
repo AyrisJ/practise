@@ -30,7 +30,7 @@
         <dependency>
             <groupId>com.dtflys.forest</groupId>
             <artifactId>forest-spring-boot-starter</artifactId>
-            <version>1.5.26</version>
+            <version>1.5.28</version>
         </dependency>
     </dependencies>
 

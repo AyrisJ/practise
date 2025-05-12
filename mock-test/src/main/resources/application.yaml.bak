@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: mockTest
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://110.42.203.15:3308/mock_test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&useTimezone=true
+    username: root
+    password: 123456
+  flyway:
+    enabled: true
+    baseline-on-migrate: false
+    locations: classpath:db/migration
+server:
+  port: 8081
+

@@ -22,5 +22,10 @@ public class TestController {
         return result;
     }
 
+    @GetMapping("hello")
+    public String hello(String name) {
+        System.out.println(name);
+        return name;
+    }
 
 }
